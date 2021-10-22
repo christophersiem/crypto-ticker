@@ -12,5 +12,5 @@ public class CoinApi {
     String id;
     String name;
     @JsonProperty("market_data")
-    MarketDataApi marketdata;
+    MarketDataApi marketData;
 }
