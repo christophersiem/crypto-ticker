@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
-const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle`
   
   * {
     box-sizing: border-box;
@@ -8,9 +8,10 @@ const GlobalStyle = createGlobalStyle`
 
   html, body {
     margin: 0;
-    background-color: black;
-    color: white;
+    background: ${({ theme }) => theme.body};
+    color: ${({ theme }) => theme.text};
     font-family: 'Share Tech Mono', monospace;
+    transition: all 0.50s linear;
   }
 
   :root {
@@ -19,8 +20,5 @@ const GlobalStyle = createGlobalStyle`
     --spacing-l: 18px;
 
   }
-
-
+  
 `
-
-export default GlobalStyle

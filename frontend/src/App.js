@@ -2,15 +2,23 @@ import Header from './components/Header'
 import styled from 'styled-components/macro'
 import CryptoOverview from './components/CryptoOverview'
 import useCoins from './hooks/useCoins'
+import React, { useState } from 'react'
+import { darkTheme, lightTheme } from './Theme'
+import { ThemeProvider } from 'styled-components'
+import { GlobalStyle } from './GlobalStyle'
 
 export default function App() {
+  const [theme, setTheme] = useState('dark')
   const coins = useCoins()
 
   return (
-    <PageLayout>
-      <Header />
-      <CryptoOverview coins={coins} />
-    </PageLayout>
+    <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+      <GlobalStyle />
+      <PageLayout>
+        <Header theme={theme} setTheme={setTheme} />
+        <CryptoOverview coins={coins} />
+      </PageLayout>
+    </ThemeProvider>
   )
 }
 

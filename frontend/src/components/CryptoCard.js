@@ -20,7 +20,7 @@ export default function CryptoCard({ coinData }) {
 }
 
 const Wrapper = styled.div`
-  border: 2px solid white;
+  border: 2px solid ${({ theme }) => theme.text};
   padding: var(--spacing-m);
   margin: var(--spacing-s);
 `
