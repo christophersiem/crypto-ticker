@@ -13,6 +13,7 @@ public class CoinFactory {
         CurrentPriceApi currentPriceApi = coinApi.getMarketData().getCurrentPrice();
         return Coin
                 .builder()
+                .id(coinApi.getId())
                 .name(coinApi.getName())
                 .currentPrice(CurrentPrice
                         .builder()

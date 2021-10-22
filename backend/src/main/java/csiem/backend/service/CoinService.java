@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
+
 
 @Service
 public class CoinService {
@@ -20,15 +22,16 @@ public class CoinService {
         this.coinFactory = coinFactory;
     }
 
-    public Coin getCoinData(String coinId) {
-        CoinApi coinApi = apiService.getCoinInfo(coinId);
+    public Coin getCoinDataById(String coinId) {
+        CoinApi coinApi = apiService.getCoinInfoById(coinId)
+                .orElseThrow(()-> new NoSuchElementException("Coin data for " + coinId + "could not get loaded from Coingecko"));
         return coinFactory.mapToCoin(coinApi);
 
     }
 
     public List<Coin> getStandardCoins() {
-        Coin bitcoinData = coinFactory.mapToCoin(apiService.getCoinInfo("bitcoin"));
-        Coin ethereumData = coinFactory.mapToCoin(apiService.getCoinInfo("ethereum"));
+        Coin bitcoinData = coinFactory.mapToCoin(apiService.getCoinInfoById("bitcoin").get());
+        Coin ethereumData = coinFactory.mapToCoin(apiService.getCoinInfoById("ethereum").get());
         return List.of(bitcoinData, ethereumData);
     }
 }

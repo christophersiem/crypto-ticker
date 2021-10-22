@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Builder
 public class Coin {
 
+    private String id;
     private String name;
     private CurrentPrice currentPrice;
     private String imageUrl;

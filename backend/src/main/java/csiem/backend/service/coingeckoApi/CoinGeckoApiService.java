@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import java.time.Duration;
+import java.util.Optional;
 
 @Service
 public class CoinGeckoApiService {
@@ -17,13 +18,19 @@ public class CoinGeckoApiService {
         this.webClient = webClient;
     }
 
-    public CoinApi getCoinInfo(String coinId){
-        return webClient
+    public Optional<CoinApi> getCoinInfoById(String coinId) {
+        CoinApi response = webClient
                 .get()
                 .uri("/coins/" + coinId)
                 .retrieve()
                 .bodyToMono(CoinApi.class)
                 .block(Duration.ofSeconds(10));
+
+        if (response == null) {
+            return Optional.empty();
+        }
+
+        return Optional.of(response);
     }
 
 

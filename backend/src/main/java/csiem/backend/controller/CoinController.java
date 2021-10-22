@@ -28,6 +28,6 @@ public class CoinController {
 
     @GetMapping("{coinId}")
     public Coin getBitcoinPrice(@PathVariable String coinId){
-        return coinService.getCoinData(coinId);
+        return coinService.getCoinDataById(coinId);
     }
 }
