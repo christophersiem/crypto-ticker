@@ -20,6 +20,7 @@ public class CoinFactory {
                         .usd(currentPriceApi.getUsd())
                         .build()
                 )
+                .imageUrl(coinApi.getImage().getImageUrl())
                 .build();
     }
 }

@@ -1,17 +1,14 @@
-package csiem.backend.model;
+package csiem.backend.model.coingeckoApi;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Builder
-public class Coin {
-
-    private String name;
-    private CurrentPrice currentPrice;
+public class ImageApi {
+    @JsonProperty("small")
     private String imageUrl;
 }

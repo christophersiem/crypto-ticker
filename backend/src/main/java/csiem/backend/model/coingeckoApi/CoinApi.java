@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class CoinApi {
-    String id;
-    String name;
+    private String id;
+    private String name;
     @JsonProperty("market_data")
-    MarketDataApi marketData;
+    private MarketDataApi marketData;
+    private ImageApi image;
 }
