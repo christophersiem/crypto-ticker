@@ -1,22 +1,15 @@
-import CryptoCard from './components/CryptoCard'
 import Header from './components/Header'
 import styled from 'styled-components/macro'
+import CryptoOverview from './components/CryptoOverview'
+import useCoins from './hooks/useCoins'
 
 export default function App() {
-  const bitcoinData = {
-    name: 'Bitcoin',
-    currentPrice: {
-      eur: 10000,
-      usd: 20000,
-    },
-    imageUrl:
-      'https://assets.coingecko.com/coins/images/279/small/ethereum.png?1595348880',
-  }
+  const coins = useCoins()
 
   return (
     <PageLayout>
       <Header />
-      <CryptoCard coinData={bitcoinData} />
+      <CryptoOverview coins={coins} />
     </PageLayout>
   )
 }

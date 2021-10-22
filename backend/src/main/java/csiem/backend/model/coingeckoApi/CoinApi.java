@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -14,4 +16,6 @@ public class CoinApi {
     @JsonProperty("market_data")
     private MarketDataApi marketData;
     private ImageApi image;
+    @JsonProperty("last_updated")
+    private LocalDateTime lastUpdated;
 }

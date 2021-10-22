@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/coins/")
+@RequestMapping("/api/coins")
 public class CoinController {
 
     private final CoinService coinService;
@@ -17,6 +19,11 @@ public class CoinController {
     @Autowired
     public CoinController(CoinService coinService) {
         this.coinService = coinService;
+    }
+
+    @GetMapping
+    public List<Coin> getStandardCoins(){
+        return coinService.getStandardCoins();
     }
 
     @GetMapping("{coinId}")

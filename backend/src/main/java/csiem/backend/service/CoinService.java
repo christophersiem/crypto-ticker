@@ -7,6 +7,8 @@ import csiem.backend.service.factory.CoinFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CoinService {
     private final CoinGeckoApiService apiService;
@@ -22,5 +24,11 @@ public class CoinService {
         CoinApi coinApi = apiService.getCoinInfo(coinId);
         return coinFactory.mapToCoin(coinApi);
 
+    }
+
+    public List<Coin> getStandardCoins() {
+        Coin bitcoinData = coinFactory.mapToCoin(apiService.getCoinInfo("bitcoin"));
+        Coin ethereumData = coinFactory.mapToCoin(apiService.getCoinInfo("ethereum"));
+        return List.of(bitcoinData, ethereumData);
     }
 }

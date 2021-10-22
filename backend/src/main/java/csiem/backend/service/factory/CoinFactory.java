@@ -21,6 +21,7 @@ public class CoinFactory {
                         .build()
                 )
                 .imageUrl(coinApi.getImage().getImageUrl())
+                .lastUpdated(coinApi.getLastUpdated())
                 .build();
     }
 }

@@ -16,6 +16,7 @@ const GlobalStyle = createGlobalStyle`
   :root {
     --spacing-s: 8px;
     --spacing-m: 12px;
+    --spacing-l: 18px;
 
   }
 
