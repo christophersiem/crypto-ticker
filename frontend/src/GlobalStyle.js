@@ -2,16 +2,24 @@ import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle`
   
-  body {
-    background-color: dodgerblue;
+  * {
+    box-sizing: border-box;
   }
-  
+
+  html, body {
+    margin: 0;
+    background-color: black;
+    color: white;
+    font-family: 'Share Tech Mono', monospace;
+  }
+
   :root {
-    --spacing-m : 12px;
-    
+    --spacing-s: 8px;
+    --spacing-m: 12px;
+
   }
-  
-  
+
+
 `
 
 export default GlobalStyle

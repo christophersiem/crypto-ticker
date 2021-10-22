@@ -1,20 +1,30 @@
 import CryptoCard from './components/CryptoCard'
+import Header from './components/Header'
+import styled from 'styled-components/macro'
 
-function App() {
+export default function App() {
   const bitcoinData = {
     name: 'Bitcoin',
     currentPrice: {
       eur: 10000,
       usd: 20000,
     },
+    imageUrl:
+      'https://assets.coingecko.com/coins/images/279/small/ethereum.png?1595348880',
   }
 
   return (
-    <div>
-      <h1>Crypto Ticker</h1>
+    <PageLayout>
+      <Header />
       <CryptoCard coinData={bitcoinData} />
-    </div>
+    </PageLayout>
   )
 }
 
-export default App
+const PageLayout = styled.div`
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+`
