@@ -5,16 +5,18 @@ export default function CryptoCard({ coinData }) {
   return (
     <Wrapper>
       <CardHeader>
-        <h2>{coinData.name}</h2>
-        <Image src={coinData.imageUrl} alt={''} />
+        <h2>{coinData?.name}</h2>
+        <Image src={coinData?.imageUrl} alt={''} />
       </CardHeader>
       <CardData>
-        <p>{coinData.currentPrice.eur} €</p>
-        <p>{coinData.currentPrice.usd} $</p>
+        <p>{coinData?.currentPrice?.eur} €</p>
+        <p>{coinData?.currentPrice?.usd} $</p>
       </CardData>
-      <CardInfo>
-        Last updated: {convertToReadableDate(coinData.lastUpdated)}
-      </CardInfo>
+      {coinData && (
+        <CardInfo>
+          Last updated: {convertToReadableDate(coinData?.lastUpdated)}
+        </CardInfo>
+      )}
     </Wrapper>
   )
 }

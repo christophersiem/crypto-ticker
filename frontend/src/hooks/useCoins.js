@@ -1,15 +1,29 @@
-import axios from 'axios'
 import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
+import { getById, getMain } from '../service/coin-service'
 
 export default function useCoins() {
   const [coins, setCoins] = useState([])
-  useEffect(() => {
-    axios
-      .get('/api/coins')
-      .then(res => res.data)
+
+  const getStandardCoins = () => {
+    getMain()
       .then(setCoins)
-      .catch(error => console.error(error.message))
+      .catch(error => toast(error.message))
+  }
+
+  useEffect(() => {
+    getStandardCoins()
   }, [])
 
-  return coins
+  const getCoinById = coinId => {
+    getById(coinId)
+      .then(data => setCoins([data, ...coins]))
+      .catch(error => toast(error.message))
+  }
+
+  const isInList = coinId => {
+    return coins.some(coin => coin.id === coinId)
+  }
+
+  return { coins, setCoins, getCoinById, getStandardCoins, isInList }
 }
