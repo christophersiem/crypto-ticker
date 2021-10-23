@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class CurrentPrice {
-    private int usd;
-    private int eur;
+    private float usd;
+    private float eur;
 }

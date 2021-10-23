@@ -11,6 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CurrentPriceApi {
 
-    private int usd;
-    private int eur;
+    private float usd;
+    private float eur;
 }
