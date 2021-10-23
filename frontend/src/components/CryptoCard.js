@@ -48,7 +48,7 @@ const CardData = styled.section`
 `
 
 const CardInfo = styled.p`
-  font-size: 0.8em;
+  font-size: 0.7em;
   margin-top: 20px;
   margin-bottom: 0;
   text-align: end;
