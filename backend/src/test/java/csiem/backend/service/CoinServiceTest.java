@@ -14,7 +14,6 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -26,21 +25,21 @@ class CoinServiceTest {
     void testGetCoinDataById() {
 
         //GIVEN
-        Optional<CoinApi> testCoinApi = getMockedCoinApi();
-        Optional<Coin> testCoin = getMockedCoin();
+        CoinApi testCoinApi = getMockedCoinApi();
+        Coin testCoin = getMockedCoin();
         CoinGeckoApiService apiService = mock(CoinGeckoApiService.class);
         when(apiService.getCoinInfoById("testcoin")).thenReturn(testCoinApi);
         CoinFactory coinFactory = mock(CoinFactory.class);
-        when(coinFactory.mapToCoin(testCoinApi.get())).thenReturn(testCoin.get());
+        when(coinFactory.mapToCoin(testCoinApi)).thenReturn(testCoin);
         CoinService coinService = new CoinService(apiService, coinFactory);
 
         //WHEN
         Coin actual = coinService.getCoinDataById("testcoin");
 
         //THEN
-        assertThat(actual, is(testCoin.get()));
+        assertThat(actual, is(testCoin));
         verify(apiService).getCoinInfoById("testcoin");
-        verify(coinFactory).mapToCoin(testCoinApi.get());
+        verify(coinFactory).mapToCoin(testCoinApi);
 
     }
 
@@ -48,28 +47,28 @@ class CoinServiceTest {
     void testGetStandardCoins() {
 
         //GIVEN
-        Optional<CoinApi> testCoinApi = getMockedCoinApi();
-        Optional<Coin> testCoin = getMockedCoin();
+        CoinApi testCoinApi = getMockedCoinApi();
+        Coin testCoin = getMockedCoin();
         CoinGeckoApiService apiService = mock(CoinGeckoApiService.class);
         when(apiService.getCoinInfoById("bitcoin")).thenReturn(testCoinApi);
         when(apiService.getCoinInfoById("ethereum")).thenReturn(testCoinApi);
         CoinFactory coinFactory = mock(CoinFactory.class);
-        when(coinFactory.mapToCoin(testCoinApi.get())).thenReturn(testCoin.get());
+        when(coinFactory.mapToCoin(testCoinApi)).thenReturn(testCoin);
         CoinService coinService = new CoinService(apiService, coinFactory);
 
         //WHEN
         List<Coin> actual = coinService.getStandardCoins();
 
         //THEN
-        assertThat(actual, is(List.of(testCoin.get(), testCoin.get())));
+        assertThat(actual, is(List.of(testCoin, testCoin)));
         verify(apiService).getCoinInfoById("bitcoin");
         verify(apiService).getCoinInfoById("ethereum");
-        verify(coinFactory, times(2)).mapToCoin(testCoinApi.get());
+        verify(coinFactory, times(2)).mapToCoin(testCoinApi);
 
     }
 
-    private Optional<CoinApi> getMockedCoinApi() {
-        return Optional.of(CoinApi.builder()
+    private CoinApi getMockedCoinApi() {
+        return CoinApi.builder()
                 .id("testcoin")
                 .name("Testcoin")
                 .image(ImageApi
@@ -80,17 +79,17 @@ class CoinServiceTest {
                         MarketDataApi.builder().currentPrice(CurrentPriceApi.builder().eur(1000).usd(1500).build())
                                 .build())
                 .lastUpdated(LocalDateTime.of(2021, 12, 12, 5, 0))
-                .build());
+                .build();
     }
 
-    private Optional<Coin> getMockedCoin() {
-        return Optional.of(Coin.builder()
+    private Coin getMockedCoin() {
+        return Coin.builder()
                 .id("testcoin")
                 .name("Testcoin")
                 .imageUrl("testUrl")
                 .currentPrice(CurrentPrice.builder().eur(1000).usd(1000).build())
                 .lastUpdated(LocalDateTime.of(2021, 12, 12, 5, 0))
-                .build());
+                .build();
     }
 
 }

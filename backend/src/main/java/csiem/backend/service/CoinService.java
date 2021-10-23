@@ -23,15 +23,14 @@ public class CoinService {
     }
 
     public Coin getCoinDataById(String coinId) {
-        CoinApi coinApi = apiService.getCoinInfoById(coinId)
-                .orElseThrow(()-> new NoSuchElementException("Coin data for " + coinId + "could not get loaded from Coingecko"));
+        CoinApi coinApi = apiService.getCoinInfoById(coinId);
         return coinFactory.mapToCoin(coinApi);
 
     }
 
     public List<Coin> getStandardCoins() {
-        Coin bitcoinData = coinFactory.mapToCoin(apiService.getCoinInfoById("bitcoin").get());
-        Coin ethereumData = coinFactory.mapToCoin(apiService.getCoinInfoById("ethereum").get());
+        Coin bitcoinData = coinFactory.mapToCoin(apiService.getCoinInfoById("bitcoin"));
+        Coin ethereumData = coinFactory.mapToCoin(apiService.getCoinInfoById("ethereum"));
         return List.of(bitcoinData, ethereumData);
     }
 }
