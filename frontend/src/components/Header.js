@@ -20,10 +20,11 @@ export default function Header({ theme, setTheme }) {
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: space-around;
+  margin: var(--spacing-s);
   align-items: center;
 `
 
 const Heading = styled.h1`
   text-align: center;
+  flex-grow: 2;
 `

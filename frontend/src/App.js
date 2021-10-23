@@ -6,6 +6,7 @@ import React, { useState } from 'react'
 import { darkTheme, lightTheme } from './Theme'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyle } from './GlobalStyle'
+import CryptoSearch from './components/CryptoSearch'
 
 export default function App() {
   const [theme, setTheme] = useState('dark')
@@ -16,6 +17,7 @@ export default function App() {
       <GlobalStyle />
       <PageLayout>
         <Header theme={theme} setTheme={setTheme} />
+        <CryptoSearch />
         <CryptoOverview coins={coins} />
       </PageLayout>
     </ThemeProvider>

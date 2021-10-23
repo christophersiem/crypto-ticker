@@ -18,5 +18,6 @@ export default function CryptoOverview({ coins }) {
 
 const Wrapper = styled.div`
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 450px));
   grid-gap: 10px;
 `
