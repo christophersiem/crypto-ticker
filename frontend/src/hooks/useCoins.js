@@ -22,7 +22,7 @@ export default function useCoins() {
   }
 
   const isInList = coinId => {
-    return coins.some(coin => coin.id === coinId.toLowerCase())
+    return coins.some(coin => coin.id === coinId.trim().toLowerCase())
   }
 
   return { coins, setCoins, getCoinById, getStandardCoins, isInList }
